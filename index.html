@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onto Nothing</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes eegPulse {
+      0%, 100% { text-shadow: none; }
+      30% { text-shadow: 0 0 8px rgba(10,132,255,0.6); }
+      31% { text-shadow: none; }
+      32% { text-shadow: 0 0 12px rgba(10,132,255,0.8); }
+      60% { text-shadow: none; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .h1-shimmer .shimmer-word {
+      background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    .eeg-glitch {
+      color: rgba(0,0,0,0.92);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(10,132,255,0.5);
+      padding-bottom: 1px;
+      animation: eegPulse 3s ease-in-out infinite;
+    }
+
+    .fu1 { opacity: 0; animation: fadeUp 0.5s ease-out 0.05s forwards; }
+    .fu3 { opacity: 0; animation: fadeUp 0.5s ease-out 0.28s forwards; }
+    .fu4 { opacity: 0; animation: fadeUp 0.5s ease-out 0.42s forwards; }
+    .fu5 { opacity: 0; animation: fadeUp 0.5s ease-out 0.56s forwards; }
+    .fu6 { opacity: 0; animation: fadeUp 0.5s ease-out 0.70s forwards; }
+    .dot-pulse { animation: pulse 2s ease-in-out infinite; }
+
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 18px 36px; border: 1.5px solid rgba(0,0,0,0.75);
+      border-radius: 9999px; background: #1D1D1F; color: #FFFFFF;
+      font-size: 17px; font-weight: 600; cursor: pointer;
+      transition: all 0.25s ease; min-height: 56px;
+      letter-spacing: -0.01em; font-family: inherit;
+    }
+    .btn-main:hover { border-color: #30D158; background: #30D158; color: #fff; }
+    .btn-main:active { transform: scale(0.98); }
+
+    .desc-card {
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px; padding: 28px 32px;
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 640px) {
+      .h1-text { font-size: 2.4rem !important; }
+      .btn-main { font-size: 15px !important; padding: 16px 28px !important; }
+      .cta-row { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Hero() {
+      return (
+        <div style={{ padding: "0 0 100px 0" }}>
+          <div style={{ position: "relative", zIndex: 5, maxWidth: 900, margin: "0 auto", padding: "0 24px" }}>
+
+            {/* Top label */}
+            <div className="fu1" style={{ paddingTop: 36, marginBottom: 32 }}>
+              <div style={{ marginBottom: 10 }}>
+                <span style={{
+                  fontFamily: "ui-monospace, monospace",
+                  fontSize: "clamp(1.1rem, 2.8vw, 1.55rem)",
+                  fontWeight: 900,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  background: "linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(48,209,88,0.9) 60%, rgba(10,132,255,0.85) 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  display: "inline-block",
+                  filter: "drop-shadow(0 0 18px rgba(48,209,88,0.18))",
+                }}>
+                  Исследовательская программа
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span className="dot-pulse" style={{ width: 6, height: 6, borderRadius: "50%", background: "#30D158", display: "inline-block", flexShrink: 0 }} />
+                <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 10, color: "rgba(0,0,0,0.48)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>
+                  ONTO NOTHING × NEIRY
+                </span>
+              </div>
+            </div>
+
+            {/* H1 */}
+            <div className="fu3" style={{ marginBottom: 28 }}>
+              <h1 className="h1-text h1-shimmer" style={{
+                fontSize: "clamp(2.6rem, 5.5vw, 4rem)",
+                fontWeight: 700,
+                lineHeight: 1.08,
+                letterSpacing: "-0.025em",
+                margin: 0,
+                color: "rgba(0,0,0,0.96)"
+              }}>
+                За <span className="shimmer-word">1 день</span> вы получите навык,<br />
+                на который у монахов<br />
+                уходят <span className="shimmer-word">десятилетия</span>.
+              </h1>
+            </div>
+
+            {/* Subheadline */}
+            <div className="fu4" style={{ marginBottom: 36 }}>
+              <p style={{ fontSize: "clamp(1.0625rem, 2.2vw, 1.25rem)", color: "rgba(0,0,0,0.68)", lineHeight: 1.5, margin: 0, maxWidth: 640 }}>
+                И мы докажем это на{" "}
+                <span style={{ color: "rgba(0,0,0,0.92)", fontWeight: 600, borderBottom: "1px solid rgba(10,132,255,0.35)", paddingBottom: 1 }}>
+                  <span className="eeg-glitch">ЭЭГ вашего мозга</span>
+                </span>{" "}
+                в реальном времени.
+              </p>
+            </div>
+
+            {/* Description card */}
+            <div className="fu5 desc-card" style={{ marginBottom: 40, maxWidth: 720 }}>
+              <p style={{ fontStyle: "italic", fontWeight: 600, fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "rgba(0,0,0,0.88)", margin: "0 0 14px 0", lineHeight: 1.5 }}>
+                «Onto Nothing — не медитация, не аффирмация и не дыхательная практика»
+              </p>
+              <p style={{ fontSize: "clamp(0.875rem, 1.8vw, 1rem)", color: "rgba(0,0,0,0.58)", lineHeight: 1.7, margin: 0 }}>
+                Это прикладной нейрофизиологический навык полной остановки внутреннего диалога. Он активируется за{" "}
+                <span style={{ color: "#0A84FF", fontWeight: 600, fontFamily: "ui-monospace, monospace" }}>2–3 секунды</span>,{" "}
+                работает с открытыми глазами и верифицируется данными энцефалограммы. Точка входа в сверхфункциональное состояние — и переключение между шестью режимами сознания по вашей команде.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <div className="fu6 cta-row" style={{ display: "flex", alignItems: "center", gap: 32 }}>
+              <button className="btn-main" onClick={() => window.open("https://t.me/konstantinshell", "_blank")}>
+                Подать заявку на участие →
+              </button>
+            </div>
+
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div style={{
+          background: "#E8E8ED",
+          minHeight: "100vh",
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          color: "#1D1D1F",
+          overflowX: "hidden",
+        }}>
+          {/* Mesh glow */}
+          <div style={{
+            position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
+            background: "radial-gradient(ellipse 70% 50% at 60% 20%, rgba(10,132,255,0.06) 0%, transparent 70%)"
+          }} />
+          <div style={{ position: "relative", zIndex: 5 }}>
+            <Hero />
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
